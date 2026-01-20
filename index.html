@@ -1,230 +1,273 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Minoris – Agentic Risk Platform</title>
-<style>
-  :root {
-    --navy: #151D36;
-    --teal: #33E4DB;
-    --white: #FFFFFF;
-  }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Duly | Agentic Commerce Readiness</title>
+    <meta name="description" content="Duly helps merchants prepare for a world where agents increasingly participate in transactions." />
 
-  @page { margin: 0; size: A4; }
+    <!-- Open Graph / Twitter (for link previews) -->
+    <meta property="og:title" content="Duly | Agentic Commerce Readiness" />
+    <meta property="og:description" content="Duly helps merchants prepare for a world where agents increasingly participate in transactions." />
+    <meta property="og:type" content="website" />
+    <!-- Update these once you know the final canonical URL and have a share image -->
+    <meta property="og:url" content="https://www.dulyhq.com/" />
+    <meta property="og:image" content="https://www.dulyhq.com/og.png" />
 
-  body {
-    margin: 0; padding: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: var(--navy); color: var(--white);
-  }
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Duly | Agentic Commerce Readiness" />
+    <meta name="twitter:description" content="Duly helps merchants prepare for a world where agents increasingly participate in transactions." />
+    <meta name="twitter:image" content="https://www.dulyhq.com/og.png" />
 
-  .sheet {
-    position: relative;
-    width: 100%; height: 100%;
-    padding: 12mm 14mm;
-    box-sizing: border-box;
-    overflow: hidden;
-  }
+    <link rel="icon" type="image/png" href="favicon.png">
 
-  .bg-shape-1, .bg-shape-2 {
-    position: absolute; border-radius: 999px;
-    filter: blur(40px); opacity: 0.25; pointer-events: none;
-  }
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #203040;
+        }
+        .bg-gradient-yellow {
+            background: linear-gradient(to bottom right, #fef08a, #facc15, #f59e0b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInHeader {
+            from { opacity: 0; transform: translateY(-10px) translateX(-50%); }
+            to { opacity: 1; transform: translateY(0) translateX(-50%); }
+        }
+        .animate-fade-in {
+            animation: fadeIn 1s ease-out forwards;
+        }
+        .animate-header {
+            animation: fadeInHeader 1s ease-out forwards;
+        }
+        .delay-300 { animation-delay: 0.3s; }
+        .delay-500 { animation-delay: 0.5s; }
+        .delay-1000 { animation-delay: 1s; }
 
-  .bg-shape-1 {
-    width: 240px; height: 240px;
-    background: radial-gradient(circle, rgba(51,228,219,0.7), transparent 70%);
-    top: -70px; right: -50px;
-  }
+        /* Custom modal transition */
+        #modal {
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+        }
 
-  .bg-shape-2 {
-    width: 200px; height: 200px;
-    background: radial-gradient(circle, rgba(40,151,156,0.7), transparent 70%);
-    bottom: -60px; left: -30px;
-  }
-
-  .content { position: relative; z-index: 1; }
-
-  .header {
-    display: flex; align-items: center;
-    gap: 14px; margin-bottom: 16px;
-  }
-
-  .logo-wrap {
-    width: 58px; height: 58px;
-    border-radius: 16px;
-    background: rgba(21,29,54,0.85);
-    display: flex; align-items: center; justify-content: center;
-    border: 1px solid rgba(51,228,219,0.35);
-  }
-
-  .logo-wrap img { width: 85%; height: auto; }
-
-  .headline h1 {
-    margin: 0; font-size: 21px; font-weight: 600;
-  }
-
-  .headline h2 {
-    margin: 2px 0 0;
-    font-size: 10px;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--teal);
-  }
-
-  .grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-  }
-
-  .block { margin-bottom: 10px; }
-
-  .block-title {
-    font-size: 10px; font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--teal);
-    margin-bottom: 2px;
-  }
-
-  p, li {
-    font-size: 10px;
-    line-height: 1.38;
-    margin: 2px 0;
-  }
-
-  .card {
-    background: rgba(21,29,54,0.92);
-    padding: 8px;
-    border-radius: 7px;
-    border: 1px solid rgba(40,151,156,0.55);
-    margin-top: 4px;
-  }
-
-  ul { padding-left: 16px; margin: 0; }
-  li { margin: 1px 0; }
-</style>
+        /* Hide scrollbar for the modal container */
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
 </head>
+<body class="text-white selection:bg-yellow-500/30 overflow-hidden">
 
-<body>
-<div class="sheet">
-<div class="bg-shape-1"></div>
-<div class="bg-shape-2"></div>
+    <!-- Background Ambient Glows -->
+    <div class="fixed top-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-400/10 rounded-full blur-[120px] pointer-events-none"></div>
+    <div class="fixed bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-yellow-500/5 rounded-full blur-[120px] pointer-events-none animate-pulse"></div>
 
-<div class="content">
+    <!-- Navigation / Logo Area -->
+    <header id="header" class="fixed top-0 w-full max-w-6xl left-1/2 -translate-x-1/2 px-8 py-8 flex justify-between items-center opacity-0 animate-header">
+        <div class="flex items-center gap-4">
+            <div class="h-12 w-auto group flex items-center">
+                <img src="logo.png" alt="Duly Logo" class="h-full w-auto max-w-[200px] object-contain hover:opacity-80 transition-opacity"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                <div class="hidden px-4 py-2 border border-yellow-500/30 bg-yellow-500/5 rounded-lg text-[10px] tracking-widest text-yellow-500/80 uppercase font-bold">
+                    Check logo.png path
+                </div>
+            </div>
+        </div>
+    </header>
 
-<header class="header">
-  <div class="logo-wrap"><img src="https://minoris.ai/logo.png"></div>
-  <div class="headline">
-    <h1>Minoris – The Agentic Risk Platform</h1>
-    <h2>AI-native intelligence for modern fraud ecosystems</h2>
-  </div>
-</header>
+    <!-- Hero Section -->
+    <main id="hero" class="relative z-10 min-h-screen flex flex-col items-center justify-center p-6 text-center space-y-10 transition-all duration-700">
+        <div class="max-w-4xl opacity-0 animate-fade-in delay-300">
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6 leading-tight">
+                Be ready for <span class="bg-gradient-yellow">agentic commerce</span>
+            </h1>
+            <p class="text-lg md:text-xl text-blue-50/70 max-w-2xl mx-auto leading-relaxed font-light">
+                Duly helps merchants prepare for a world where agents increasingly participate in transactions.
+            </p>
+        </div>
 
-<main class="grid">
+        <div class="opacity-0 animate-fade-in delay-500">
+            <p class="text-xs uppercase tracking-[0.4em] text-yellow-100/70 mb-10">
+                Visibility, control, and learning — <span class="text-white font-medium">before it matters.</span>
+            </p>
 
-<!-- LEFT COLUMN -->
-<div>
+            <button id="learnMoreBtn" onclick="openForm()" class="group relative inline-flex items-center justify-center px-10 py-4 font-medium text-white transition-all duration-300 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-yellow-400/30 active:scale-95 shadow-2xl">
+                <span class="relative z-10 flex items-center gap-2">
+                    Learn more
+                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </span>
+                <div class="absolute inset-0 rounded-full bg-yellow-500/10 opacity-0 group-hover:opacity-100 blur-xl transition-opacity"></div>
+            </button>
+        </div>
+    </main>
 
-<section class="block">
-  <div class="block-title">Market Shift</div>
-  <p>Generative AI has industrialized deception: deepfakes, voice cloning, and autonomous probing have become cheap and ubiquitous, collapsing traditional verification and driving a surge in AI-driven attacks.</p>
-  <p>Fraud prevention is shifting from a niche function into <strong>critical infrastructure</strong>, with the category expanding from ~$15B today toward $65B+ by the early 2030s.</p>
-</section>
+    <!-- Embedded Form Overlay -->
+    <div id="modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-[#0a1520]/95 backdrop-blur-xl transition-opacity duration-500" onclick="closeForm()"></div>
 
-<section class="block">
-  <div class="block-title">The Systemic Problem</div>
-  <p><strong>Fraud has become a fast-moving, adaptive system — but the defenses protecting it haven’t kept up.</strong></p>
-  <p>Most companies think they “use AI” because they run a fraud-scoring model, yet everything around that model is manual and siloed: rule tuning, RCA, drift investigation, vendor monitoring, calibrations, and impact analysis all rely on analysts clicking through disconnected dashboards.</p>
-  <p>This gap is widening fast. Attackers use AI to probe and adapt at machine speed — and the rise of agentic commerce only amplifies the complexity.</p>
-</section>
+        <!-- Modal Container -->
+        <div class="relative w-full max-w-2xl h-[85vh] bg-[#1a2a3a] border border-white/5 rounded-3xl shadow-[0_0_50px_-12px_rgba(0,0,0,0.5)] overflow-hidden transform scale-95 transition-all duration-300 ease-out" id="modalContent" role="dialog" aria-modal="true" aria-label="Learn more">
 
-<section class="block">
-  <div class="block-title">What Minoris Does</div>
-  <div class="card">
-    <ul>
-      <li><strong>Always-On Risk Operator</strong> – detects drift, decay, vendor degradation, and multi-step failures</li>
-      <li><strong>Autonomous Analyst</strong> – automated RCA, correlation, and hypothesis generation</li>
-      <li><strong>Strategic Risk Leader</strong> – quantifies business impact and prioritizes actions for safer approvals</li>
-    </ul>
-  </div>
-</section>
+            <!-- Custom Loading Indicator -->
+            <div id="formLoader" class="absolute inset-0 flex items-center justify-center bg-[#1a2a3a] z-40 transition-opacity duration-500">
+                <div class="flex flex-col items-center gap-4">
+                    <div class="w-8 h-8 border-2 border-yellow-500/20 border-t-yellow-500 rounded-full animate-spin"></div>
+                    <p class="text-[10px] tracking-[0.2em] text-yellow-500/40 uppercase">Loading Form</p>
+                </div>
+            </div>
 
-</div>
+            <!-- Header Handle -->
+            <div class="absolute top-0 left-0 right-0 h-1.5 flex justify-center pt-3 pointer-events-none z-50">
+                <div class="w-12 h-1 bg-white/10 rounded-full"></div>
+            </div>
 
-<!-- RIGHT COLUMN -->
-<div>
+            <!-- Close Button -->
+            <button id="closeBtn" onclick="closeForm()" aria-label="Close" class="absolute top-4 right-4 z-[60] p-2 bg-black/20 hover:bg-white/10 rounded-full transition-all border border-white/5 backdrop-blur-md group">
+                <svg class="w-5 h-5 text-gray-400 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
 
-<section class="block">
-  <div class="block-title">What Minoris Is</div>
-  <p><strong>Minoris is an AI-native reasoning layer that monitors the full risk lifecycle and acts as an autonomous operator, analyst, and strategist.</strong></p>
-</section>
+            <!-- Tally Embed -->
+            <iframe
+                id="tallyIframe"
+                src="https://tally.so/embed/q4G9bG?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
+                width="100%"
+                height="100%"
+                frameborder="0"
+                marginheight="0"
+                marginwidth="0"
+                title="Duly Early Access Form"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                class="relative z-30 opacity-0 transition-opacity duration-700"
+                onload="onFormLoad()"
+            ></iframe>
+        </div>
+    </div>
 
-<section class="block">
-  <div class="block-title">Why Minoris Is Different</div>
-  <p>The first <strong>horizontal intelligence layer</strong> for risk:</p>
-  <div class="card">
-    <ul>
-      <li>Understands cross-layer causal chains, not isolated signals</li>
-      <li>Continuously learns and adapts at machine speed</li>
-      <li>Sits above IDV, device, behavior, rules, models, and vendors without replacing them</li>
-      <li>Closes the intelligence gap between AI-driven attackers and human operations</li>
-    </ul>
-  </div>
-</section>
+    <!-- Footer -->
+    <footer id="footer" class="fixed bottom-0 w-full p-8 text-center opacity-0 animate-fade-in delay-1000">
+        <p class="text-[9px] text-yellow-200/20 uppercase tracking-[0.6em]">
+            &copy; 2026 Duly AI Inc
+        </p>
+    </footer>
 
-<section class="block">
-  <div class="block-title">Network-Level Intelligence</div>
-  <p>With scale, Minoris unlocks a defensive intelligence no company can build alone:</p>
-  <div class="card">
-    <ul>
-      <li>Early detection of multi-company attack patterns</li>
-      <li>Benchmarking of declines, false positives, and vendor performance</li>
-      <li>Insights from outcomes across similar customer profiles</li>
-      <li>A continuously learning collective risk brain</li>
-    </ul>
-  </div>
-</section>
+    <script>
+        let isFormLoaded = false;
+        let lastFocusedElement = null;
 
-<section class="block">
-  <div class="block-title">Customer Value</div>
-  <div class="card">
-    <ul>
-      <li><strong>Spot issues early</strong> before they become losses</li>
-      <li><strong>Know exactly why</strong> decisions and patterns shift</li>
-      <li><strong>Make better decisions faster</strong></li>
-      <li><strong>Lift approvals</strong> without adding headcount</li>
-      <li><strong>Continuously improve</strong> the entire risk operation</li>
-    </ul>
-  </div>
-</section>
+        // Close on Escape
+        document.addEventListener('keydown', (e) => {
+            const modal = document.getElementById('modal');
+            const isOpen = modal && !modal.classList.contains('hidden');
+            if (!isOpen) return;
 
-<section class="block">
-  <div class="block-title">The Team</div>
-  <div class="card">
-    <p><strong>Matan Naor — CEO / Co-Founder</strong></p>
-    <p>Former GM of PayPal Israel and VP Risk Management with 15+ years leading global fraud, operations, and large-scale execution.</p>
-    <br>
-    <p><strong>Netanel Kabala — CAIO / Co-Founder</strong></p>
-    <p>Co-founder & CAIO at Simplex (acquired by Nuvei for ~$250M), later led AI & analytics at Nuvei, driving its AI transformation and automated insight systems.</p>
-  </div>
-</section>
+            if (e.key === 'Escape') {
+                e.preventDefault();
+                closeForm();
+            }
+        });
 
-<section class="block">
-  <div class="block-title">Company Status & Funding</div>
-  <div class="card">
-    <ul>
-      <li>Early-stage with architecture defined and interactive mockups complete</li>
-      <li>Design partners engaged across fintech, e-commerce, and digital assets</li>
-      <li>Preparing for a pre-seed/seed raise to accelerate product development</li>
-    </ul>
-  </div>
-</section>
+        // Keep focus inside modal when open (best-effort, cross-origin iframe limits apply)
+        document.addEventListener('focusin', (e) => {
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modalContent');
+            const isOpen = modal && !modal.classList.contains('hidden');
+            if (!isOpen) return;
 
-</div>
-</main>
+            if (modalContent && !modalContent.contains(e.target)) {
+                const closeBtn = document.getElementById('closeBtn');
+                if (closeBtn) closeBtn.focus();
+            }
+        });
 
-</div></div>
+        function onFormLoad() {
+            isFormLoaded = true;
+            const iframe = document.getElementById('tallyIframe');
+            const loader = document.getElementById('formLoader');
+            iframe.style.opacity = '1';
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => loader.style.display = 'none', 500);
+            }
+        }
+
+        function openForm() {
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modalContent');
+            const hero = document.getElementById('hero');
+            const footer = document.getElementById('footer');
+            const loader = document.getElementById('formLoader');
+            const iframe = document.getElementById('tallyIframe');
+            const closeBtn = document.getElementById('closeBtn');
+
+            lastFocusedElement = document.activeElement;
+
+            // Ensure the fade-in actually animates
+            modal.style.opacity = '0';
+            modal.classList.remove('hidden');
+
+            if (!isFormLoaded) {
+                loader.style.display = 'flex';
+                loader.style.opacity = '1';
+                iframe.style.opacity = '0';
+
+                setTimeout(() => {
+                    if (!isFormLoaded) onFormLoad();
+                }, 6000);
+            } else {
+                loader.style.display = 'none';
+                iframe.style.opacity = '1';
+            }
+
+            setTimeout(() => {
+                modal.style.opacity = '1';
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+                if (closeBtn) closeBtn.focus();
+            }, 10);
+
+            hero.style.transform = 'scale(0.97) translateY(-10px)';
+            hero.style.opacity = '0.2';
+            footer.style.opacity = '0';
+        }
+
+        function closeForm() {
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modalContent');
+            const hero = document.getElementById('hero');
+            const footer = document.getElementById('footer');
+
+            modal.style.opacity = '0';
+            modalContent.classList.remove('scale-100');
+            modalContent.classList.add('scale-95');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                hero.style.transform = 'scale(1) translateY(0)';
+                hero.style.opacity = '1';
+                footer.style.opacity = '1';
+
+                // Restore focus to where the user was
+                if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
+                    lastFocusedElement.focus();
+                } else {
+                    const learnMoreBtn = document.getElementById('learnMoreBtn');
+                    if (learnMoreBtn) learnMoreBtn.focus();
+                }
+            }, 400);
+        }
+    </script>
 </body>
 </html>
