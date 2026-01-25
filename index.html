@@ -6,11 +6,9 @@
     <title>Duly | Agentic Commerce Readiness</title>
     <meta name="description" content="Duly helps merchants prepare for a world where agents increasingly participate in transactions." />
 
-    <!-- Open Graph / Twitter (for link previews) -->
     <meta property="og:title" content="Duly | Agentic Commerce Readiness" />
     <meta property="og:description" content="Duly helps merchants prepare for a world where agents increasingly participate in transactions." />
     <meta property="og:type" content="website" />
-    <!-- Update these once you know the final canonical URL and have a share image -->
     <meta property="og:url" content="https://www.dulyhq.com/" />
     <meta property="og:image" content="https://www.dulyhq.com/og.png" />
 
@@ -67,22 +65,15 @@
         }
     </style>
 </head>
-<!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-L2GEYJSPXL"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
   gtag('js', new Date());
-
   gtag('config', 'G-L2GEYJSPXL');
 </script>
 <body class="text-white selection:bg-yellow-500/30 overflow-hidden">
 
-    <!-- Background Ambient Glows -->
-    <div class="fixed top-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-400/10 rounded-full blur-[120px] pointer-events-none"></div>
-    <div class="fixed bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-yellow-500/5 rounded-full blur-[120px] pointer-events-none animate-pulse"></div>
-
-    <!-- Navigation / Logo Area -->
     <header id="header" class="fixed top-0 w-full max-w-6xl left-1/2 -translate-x-1/2 px-8 py-8 flex justify-between items-center opacity-0 animate-header">
         <div class="flex items-center gap-4">
             <div class="h-12 w-auto group flex items-center">
@@ -95,7 +86,6 @@
         </div>
     </header>
 
-    <!-- Hero Section -->
     <main id="hero" class="relative z-10 min-h-screen flex flex-col items-center justify-center p-6 text-center space-y-10 transition-all duration-700">
         <div class="max-w-4xl opacity-0 animate-fade-in delay-300">
             <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6 leading-tight">
@@ -121,15 +111,11 @@
         </div>
     </main>
 
-    <!-- Embedded Form Overlay -->
     <div id="modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
-        <!-- Backdrop -->
         <div class="absolute inset-0 bg-[#0a1520]/95 backdrop-blur-xl transition-opacity duration-500" onclick="closeForm()"></div>
 
-        <!-- Modal Container -->
         <div class="relative w-full max-w-2xl h-[85vh] bg-[#1a2a3a] border border-white/5 rounded-3xl shadow-[0_0_50px_-12px_rgba(0,0,0,0.5)] overflow-hidden transform scale-95 transition-all duration-300 ease-out" id="modalContent" role="dialog" aria-modal="true" aria-label="Learn more">
 
-            <!-- Custom Loading Indicator -->
             <div id="formLoader" class="absolute inset-0 flex items-center justify-center bg-[#1a2a3a] z-40 transition-opacity duration-500">
                 <div class="flex flex-col items-center gap-4">
                     <div class="w-8 h-8 border-2 border-yellow-500/20 border-t-yellow-500 rounded-full animate-spin"></div>
@@ -137,17 +123,14 @@
                 </div>
             </div>
 
-            <!-- Header Handle -->
             <div class="absolute top-0 left-0 right-0 h-1.5 flex justify-center pt-3 pointer-events-none z-50">
                 <div class="w-12 h-1 bg-white/10 rounded-full"></div>
             </div>
 
-            <!-- Close Button -->
             <button id="closeBtn" onclick="closeForm()" aria-label="Close" class="absolute top-4 right-4 z-[60] p-2 bg-black/20 hover:bg-white/10 rounded-full transition-all border border-white/5 backdrop-blur-md group">
                 <svg class="w-5 h-5 text-gray-400 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
 
-            <!-- Tally Embed -->
             <iframe
                 id="tallyIframe"
                 src="https://tally.so/embed/q4G9bG?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
@@ -158,14 +141,13 @@
                 marginwidth="0"
                 title="Duly Early Access Form"
                 loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"
+                referrerrpolicy="no-referrer-when-downgrade"
                 class="relative z-30 opacity-0 transition-opacity duration-700"
                 onload="onFormLoad()"
             ></iframe>
         </div>
     </div>
 
-    <!-- Footer -->
     <footer id="footer" class="fixed bottom-0 w-full p-8 text-center opacity-0 animate-fade-in delay-1000">
         <p class="text-[9px] text-yellow-200/20 uppercase tracking-[0.6em]">
             &copy; 2026 Duly AI Inc
@@ -176,7 +158,6 @@
         let isFormLoaded = false;
         let lastFocusedElement = null;
 
-        // Close on Escape
         document.addEventListener('keydown', (e) => {
             const modal = document.getElementById('modal');
             const isOpen = modal && !modal.classList.contains('hidden');
@@ -188,7 +169,6 @@
             }
         });
 
-        // Keep focus inside modal when open (best-effort, cross-origin iframe limits apply)
         document.addEventListener('focusin', (e) => {
             const modal = document.getElementById('modal');
             const modalContent = document.getElementById('modalContent');
@@ -222,8 +202,6 @@
             const closeBtn = document.getElementById('closeBtn');
 
             lastFocusedElement = document.activeElement;
-
-            // Ensure the fade-in actually animates
             modal.style.opacity = '0';
             modal.classList.remove('hidden');
 
@@ -268,7 +246,6 @@
                 hero.style.opacity = '1';
                 footer.style.opacity = '1';
 
-                // Restore focus to where the user was
                 if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
                     lastFocusedElement.focus();
                 } else {
@@ -280,4 +257,3 @@
     </script>
 </body>
 </html>
-
