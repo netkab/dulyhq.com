@@ -1,259 +1,829 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Duly | Agentic Commerce Readiness</title>
-    <meta name="description" content="Duly helps merchants prepare for a world where agents increasingly participate in transactions." />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Duly — The Trust Layer for Autonomous Finance</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-    <meta property="og:title" content="Duly | Agentic Commerce Readiness" />
-    <meta property="og:description" content="Duly helps merchants prepare for a world where agents increasingly participate in transactions." />
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://www.dulyhq.com/" />
-    <meta property="og:image" content="https://www.dulyhq.com/og.png" />
+:root {
+  /* ── Derived from Duly's logo dark-bg palette ── */
+  --bg:           #1c2e42;   /* primary surface — logo dark navy */
+  --bg-2:         #152437;   /* deeper surface — section contrasts */
+  --bg-3:         #243649;   /* elevated surface — inputs, cards */
+  --ink:          #eef2f6;   /* primary text */
+  --ink-2:        #8fb0c7;   /* secondary text */
+  --ink-3:        #5c7a92;   /* tertiary / labels */
+  --border:       rgba(238,242,246,0.07);
+  --border-2:     rgba(238,242,246,0.12);
+  --border-input: rgba(238,242,246,0.30);
+  --accent:       #7dbcd8;   /* steel blue — lighter on same navy hue */
+  --accent-light: rgba(125,188,216,0.1);
+  --content-pad:  4rem;
+}
 
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Duly | Agentic Commerce Readiness" />
-    <meta name="twitter:description" content="Duly helps merchants prepare for a world where agents increasingly participate in transactions." />
-    <meta name="twitter:image" content="https://www.dulyhq.com/og.png" />
+html { scroll-behavior: smooth; }
 
-    <link rel="icon" type="image/png" href="favicon.png">
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  font-kerning: normal;
+}
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #203040;
-        }
-        .bg-gradient-yellow {
-            background: linear-gradient(to bottom right, #fef08a, #facc15, #f59e0b);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInHeader {
-            from { opacity: 0; transform: translateY(-10px) translateX(-50%); }
-            to { opacity: 1; transform: translateY(0) translateX(-50%); }
-        }
-        .animate-fade-in {
-            animation: fadeIn 1s ease-out forwards;
-        }
-        .animate-header {
-            animation: fadeInHeader 1s ease-out forwards;
-        }
-        .delay-300 { animation-delay: 0.3s; }
-        .delay-500 { animation-delay: 0.5s; }
-        .delay-1000 { animation-delay: 1s; }
+h1, h2, h3 { text-wrap: balance; }
+article p  { text-wrap: pretty; }
 
-        /* Custom modal transition */
-        #modal {
-            opacity: 0;
-            transition: opacity 0.4s ease-in-out;
-        }
+/* ─── NAV ──────────────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem var(--content-pad);
+  background: rgba(21,36,55,0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 0.5px solid var(--border-2);
+}
 
-        /* Hide scrollbar for the modal container */
-        .no-scrollbar::-webkit-scrollbar {
-            display: none;
-        }
-        .no-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-        }
-    </style>
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.logo-img {
+  height: 30px;
+  width: auto;
+  display: block;
+  mix-blend-mode: screen;
+}
+
+.nav-cta {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  text-decoration: none;
+  border: 1px solid var(--border-2);
+  padding: 0.45rem 1.1rem;
+  border-radius: 5px;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.nav-cta:hover { background: var(--border-2); border-color: rgba(238,242,246,0.2); }
+.nav-cta:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* ─── HERO ─────────────────────────────────────────── */
+.hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 9rem 0 7rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Dot-grid in white/blue at low opacity, fading in from right */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(238,242,246,0.18) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse 65% 80% at 82% 38%, rgba(0,0,0,0.9) 0%, transparent 68%);
+  -webkit-mask-image: radial-gradient(ellipse 65% 80% at 82% 38%, rgba(0,0,0,0.9) 0%, transparent 68%);
+}
+
+/* Accent node anchoring the grid */
+.hero::after {
+  content: '';
+  position: absolute;
+  right: calc(18% - 5px);
+  top: calc(38% - 5px);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+.hero-inner {
+  position: relative;
+  max-width: 1280px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 var(--content-pad);
+}
+
+.hero-label {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.hero-headline {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(3.2rem, 7vw, 6.5rem);
+  line-height: 1.03;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  max-width: 860px;
+  opacity: 0;
+  animation: fadeUp 0.7s ease 0.1s forwards;
+}
+
+.hero-headline em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-sub {
+  margin-top: 2.5rem;
+  font-size: 1.1rem;
+  color: var(--ink-2);
+  max-width: 500px;
+  line-height: 1.7;
+  font-weight: 300;
+  opacity: 0;
+  animation: fadeUp 0.7s ease 0.2s forwards;
+}
+
+.hero-actions {
+  margin-top: 3.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  opacity: 0;
+  animation: fadeUp 0.7s ease 0.32s forwards;
+}
+
+/* White CTA button — strikes hard on dark bg */
+.btn-primary {
+  background: var(--ink);
+  color: var(--bg);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.8rem 2rem;
+  border-radius: 5px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: opacity 0.2s;
+}
+
+.btn-primary:hover { opacity: 0.88; }
+.btn-primary:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+/* ─── SECTION BREAK ────────────────────────────────── */
+.section-break {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 0 var(--content-pad);
+  margin: 0.5rem auto;
+  max-width: 1280px;
+}
+
+.section-break-line {
+  flex: 1;
+  height: 0.5px;
+  background: var(--border-2);
+}
+
+.section-break-mark {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.section-break-mark span {
+  display: block;
+  border-radius: 50%;
+  background: var(--border-2);
+  width: 4px;
+  height: 4px;
+}
+
+.section-break-mark span:nth-child(2) {
+  width: 6px;
+  height: 6px;
+  background: var(--accent);
+  opacity: 0.5;
+}
+
+/* ─── SECTION BASE ─────────────────────────────────── */
+.section {
+  padding: 7rem var(--content-pad);
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-label {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 3.5rem;
+}
+
+/* ─── SOLUTION ─────────────────────────────────────── */
+.solution-grid {
+  display: grid;
+  grid-template-columns: 5fr 4fr;
+  gap: 5rem;
+  align-items: start;
+}
+
+.solution-hook {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(1.75rem, 2.8vw, 2.5rem);
+  line-height: 1.2;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+.solution-hook em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.solution-tag {
+  display: inline-block;
+  margin-top: 2.5rem;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid rgba(125,188,216,0.3);
+  padding: 0.3rem 0.85rem;
+  border-radius: 100px;
+}
+
+.solution-body {
+  font-size: 1rem;
+  color: var(--ink-2);
+  line-height: 1.8;
+  font-weight: 300;
+}
+
+.solution-body p + p { margin-top: 1.25rem; }
+
+/* ─── PROPERTIES — numbered ledger ─────────────────── */
+.properties-list {
+  margin-top: 6rem;
+  border-top: 0.5px solid var(--border-2);
+}
+
+.property-row {
+  display: grid;
+  grid-template-columns: 2.5rem 1fr 1.8fr;
+  gap: 0 4rem;
+  padding: 2.75rem 0;
+  border-bottom: 0.5px solid var(--border-2);
+  align-items: start;
+}
+
+.property-num {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  color: var(--ink-3);
+  padding-top: 0.35rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.property-name {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(1.35rem, 1.8vw, 1.75rem);
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+}
+
+.property-desc {
+  font-size: 0.95rem;
+  color: var(--ink-2);
+  font-weight: 300;
+  line-height: 1.75;
+  max-width: 55ch;
+}
+
+/* ─── SEGMENTS — editorial list ─────────────────────── */
+.segments-intro {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(1.6rem, 2.5vw, 2.2rem);
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  margin-bottom: 4rem;
+  max-width: 540px;
+}
+
+.segments-list {
+  border-top: 0.5px solid var(--border-2);
+}
+
+.segment-item {
+  display: grid;
+  grid-template-columns: 13rem 1fr;
+  gap: 4rem;
+  padding: 2.75rem 0;
+  border-bottom: 0.5px solid var(--border-2);
+  align-items: start;
+}
+
+.segment-type {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 0.6rem;
+}
+
+.segment-name {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(1.5rem, 2vw, 2rem);
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  transition: color 0.15s;
+}
+
+@media (hover: hover) {
+  .segment-item:hover .segment-name { color: var(--accent); }
+}
+
+.segment-desc {
+  font-size: 0.95rem;
+  color: var(--ink-2);
+  line-height: 1.8;
+  font-weight: 300;
+  max-width: 55ch;
+  padding-top: 0.15rem;
+}
+
+/* ─── TEAM ──────────────────────────────────────────── */
+.team-section {
+  background: var(--bg-2);
+  border-top: 0.5px solid var(--border-2);
+  border-bottom: 0.5px solid var(--border-2);
+}
+
+.team-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 5rem var(--content-pad);
+}
+
+.team-statement {
+  font-size: clamp(1rem, 1.4vw, 1.15rem);
+  font-weight: 300;
+  color: var(--ink-2);
+  line-height: 1.8;
+  max-width: 600px;
+}
+
+/* ─── CTA ───────────────────────────────────────────── */
+.cta-section {
+  padding: 7rem var(--content-pad);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: start;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-left h2 {
+  font-family: 'Instrument Serif', serif;
+  font-size: clamp(2.2rem, 3.5vw, 3.2rem);
+  line-height: 1.08;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin-bottom: 1.5rem;
+}
+
+.cta-left h2 em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.cta-left p {
+  font-size: 1rem;
+  color: var(--ink-2);
+  font-weight: 300;
+  line-height: 1.8;
+  max-width: 38ch;
+}
+
+/* ─── FORM ──────────────────────────────────────────── */
+.form-group { margin-bottom: 1rem; }
+
+.form-group label {
+  display: block;
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  margin-bottom: 0.4rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  background: var(--bg-3);
+  border: 1px solid var(--border-input);
+  border-radius: 5px;
+  padding: 0.7rem 0.9rem;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.9rem;
+  color: var(--ink);
+  outline: none;
+  transition: border-color 0.2s;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: var(--ink-3); }
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: var(--accent); }
+
+.form-group select option { background: var(--bg-3); color: var(--ink); }
+
+.form-group textarea { resize: vertical; min-height: 80px; }
+
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+.form-submit {
+  width: 100%;
+  background: var(--ink);
+  color: var(--bg);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.875rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+  transition: opacity 0.2s;
+}
+
+.form-submit:hover { opacity: 0.88; }
+.form-submit:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.form-note {
+  margin-top: 0.75rem;
+  font-size: 0.7rem;
+  color: var(--ink-3);
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* ─── FORM SUCCESS ──────────────────────────────────── */
+.form-success {
+  display: none;
+  text-align: center;
+  padding: 3.5rem 2rem;
+  border: 0.5px solid var(--border-2);
+  border-radius: 10px;
+  background: var(--bg-3);
+}
+
+.form-success .checkmark {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: var(--accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.25rem;
+}
+
+.form-success h3 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.5rem;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.01em;
+}
+
+.form-success p {
+  font-size: 0.875rem;
+  color: var(--ink-2);
+  font-weight: 300;
+}
+
+/* ─── FOOTER ────────────────────────────────────────── */
+footer {
+  padding: 2rem var(--content-pad);
+  border-top: 0.5px solid var(--border);
+  background: var(--bg-2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+}
+
+.footer-logo-img {
+  height: 22px;
+  width: auto;
+  display: block;
+  mix-blend-mode: screen;
+}
+
+.footer-copy {
+  font-size: 0.7rem;
+  color: var(--ink-3);
+  letter-spacing: 0.02em;
+}
+
+/* ─── ANIMATION ─────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── REDUCED MOTION ────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-label, .hero-headline, .hero-sub, .hero-actions {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width: 900px) {
+  :root { --content-pad: 1.5rem; }
+
+  nav { padding: 1rem var(--content-pad); }
+
+  .hero { padding: 7rem 0 5rem; }
+
+  .section { padding: 4rem var(--content-pad); }
+
+  .solution-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+
+  .property-row {
+    grid-template-columns: 2rem 1fr;
+    gap: 0 1.25rem;
+  }
+  .property-desc {
+    grid-column: 2;
+    margin-top: 0.6rem;
+  }
+
+  .segment-item {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .team-inner { padding: 3rem var(--content-pad); }
+
+  .cta-section {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 4rem var(--content-pad);
+  }
+
+  .form-row { grid-template-columns: 1fr; }
+
+  footer {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+    padding: 1.5rem;
+  }
+}
+</style>
 </head>
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-L2GEYJSPXL"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-L2GEYJSPXL');
-</script>
-<body class="text-white selection:bg-yellow-500/30 overflow-hidden">
+<body>
 
-    <header id="header" class="fixed top-0 w-full max-w-6xl left-1/2 -translate-x-1/2 px-8 py-8 flex justify-between items-center opacity-0 animate-header">
-        <div class="flex items-center gap-4">
-            <div class="h-12 w-auto group flex items-center">
-                <img src="logo.png" alt="Duly Logo" class="h-full w-auto max-w-[200px] object-contain hover:opacity-80 transition-opacity"
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
-                <div class="hidden px-4 py-2 border border-yellow-500/30 bg-yellow-500/5 rounded-lg text-[10px] tracking-widest text-yellow-500/80 uppercase font-bold">
-                    Check logo.png path
-                </div>
-            </div>
-        </div>
-    </header>
+<nav>
+  <a href="#" class="logo" aria-label="Duly home">
+    <img src="logo.png" alt="Duly" class="logo-img" />
+  </a>
+  <a href="#talk" class="nav-cta">Let's talk</a>
+</nav>
 
-    <main id="hero" class="relative z-10 min-h-screen flex flex-col items-center justify-center p-6 text-center space-y-10 transition-all duration-700">
-        <div class="max-w-4xl opacity-0 animate-fade-in delay-300">
-            <h1 class="text-5xl md:text-7xl font-bold tracking-tight text-white mb-6 leading-tight">
-                Be ready for <span class="bg-gradient-yellow">agentic commerce</span>
-            </h1>
-            <p class="text-lg md:text-xl text-blue-50/70 max-w-2xl mx-auto leading-relaxed font-light">
-                Duly helps merchants prepare for a world where agents increasingly participate in transactions.
-            </p>
-        </div>
-
-        <div class="opacity-0 animate-fade-in delay-500">
-            <p class="text-xs uppercase tracking-[0.4em] text-yellow-100/70 mb-10">
-                Visibility, control, and learning — <span class="text-white font-medium">before it matters.</span>
-            </p>
-
-            <button id="learnMoreBtn" onclick="openForm()" class="group relative inline-flex items-center justify-center px-10 py-4 font-medium text-white transition-all duration-300 bg-white/5 border border-white/10 rounded-full hover:bg-white/10 hover:border-yellow-400/30 active:scale-95 shadow-2xl">
-                <span class="relative z-10 flex items-center gap-2">
-                    Learn more
-                    <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
-                </span>
-                <div class="absolute inset-0 rounded-full bg-yellow-500/10 opacity-0 group-hover:opacity-100 blur-xl transition-opacity"></div>
-            </button>
-        </div>
-    </main>
-
-    <div id="modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
-        <div class="absolute inset-0 bg-[#0a1520]/95 backdrop-blur-xl transition-opacity duration-500" onclick="closeForm()"></div>
-
-        <div class="relative w-full max-w-2xl h-[85vh] bg-[#1a2a3a] border border-white/5 rounded-3xl shadow-[0_0_50px_-12px_rgba(0,0,0,0.5)] overflow-hidden transform scale-95 transition-all duration-300 ease-out" id="modalContent" role="dialog" aria-modal="true" aria-label="Learn more">
-
-            <div id="formLoader" class="absolute inset-0 flex items-center justify-center bg-[#1a2a3a] z-40 transition-opacity duration-500">
-                <div class="flex flex-col items-center gap-4">
-                    <div class="w-8 h-8 border-2 border-yellow-500/20 border-t-yellow-500 rounded-full animate-spin"></div>
-                    <p class="text-[10px] tracking-[0.2em] text-yellow-500/40 uppercase">Loading Form</p>
-                </div>
-            </div>
-
-            <div class="absolute top-0 left-0 right-0 h-1.5 flex justify-center pt-3 pointer-events-none z-50">
-                <div class="w-12 h-1 bg-white/10 rounded-full"></div>
-            </div>
-
-            <button id="closeBtn" onclick="closeForm()" aria-label="Close" class="absolute top-4 right-4 z-[60] p-2 bg-black/20 hover:bg-white/10 rounded-full transition-all border border-white/5 backdrop-blur-md group">
-                <svg class="w-5 h-5 text-gray-400 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-
-            <iframe
-                id="tallyIframe"
-                src="https://tally.so/embed/q4G9bG?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-                width="100%"
-                height="100%"
-                frameborder="0"
-                marginheight="0"
-                marginwidth="0"
-                title="Duly Early Access Form"
-                loading="lazy"
-                referrerrpolicy="no-referrer-when-downgrade"
-                class="relative z-30 opacity-0 transition-opacity duration-700"
-                onload="onFormLoad()"
-            ></iframe>
-        </div>
+<!-- HERO -->
+<section class="hero" aria-labelledby="hero-heading">
+  <div class="hero-inner">
+    <p class="hero-label">Trust infrastructure · Autonomous finance</p>
+    <h1 class="hero-headline" id="hero-heading">The trust layer for<br><em>autonomous finance.</em></h1>
+    <p class="hero-sub">Autonomous finance doesn't need faster versions of old processes. It needs new ones.</p>
+    <div class="hero-actions">
+      <a href="#talk" class="btn-primary">Let's talk</a>
     </div>
+  </div>
+</section>
 
-    <footer id="footer" class="fixed bottom-0 w-full p-8 text-center opacity-0 animate-fade-in delay-1000">
-        <p class="text-[9px] text-yellow-200/20 uppercase tracking-[0.6em]">
-            &copy; 2026 Duly AI Inc
-        </p>
-    </footer>
+<div class="section-break" aria-hidden="true">
+  <div class="section-break-line"></div>
+  <div class="section-break-mark"><span></span><span></span><span></span></div>
+  <div class="section-break-line"></div>
+</div>
 
-    <script>
-        let isFormLoaded = false;
-        let lastFocusedElement = null;
+<!-- SOLUTION -->
+<section class="section" id="solution" aria-labelledby="solution-heading">
+  <p class="section-label">Solutions</p>
+  <div class="solution-grid">
+    <div>
+      <h2 class="solution-hook" id="solution-heading">Stablecoins were adopted for settlement. <em>The processes around them stayed fiat.</em></h2>
+      <span class="solution-tag">Stablecoin infrastructure</span>
+    </div>
+    <div class="solution-body" role="article">
+      <p>The industry adopted stablecoins for settlement but kept the dispute, compliance, and trust processes designed for fiat. The unique properties of programmable money — conditionality, verifiability, finality — are going entirely unused.</p>
+      <p>We're building the infrastructure that actually uses them.</p>
+    </div>
+  </div>
 
-        document.addEventListener('keydown', (e) => {
-            const modal = document.getElementById('modal');
-            const isOpen = modal && !modal.classList.contains('hidden');
-            if (!isOpen) return;
+  <div class="properties-list">
+    <div class="property-row">
+      <span class="property-num" aria-hidden="true">01</span>
+      <h3 class="property-name">Conditionality</h3>
+      <p class="property-desc">Payment logic encoded natively — funds move when and only when conditions are met, without manual intervention.</p>
+    </div>
+    <div class="property-row">
+      <span class="property-num" aria-hidden="true">02</span>
+      <h3 class="property-name">Verifiability</h3>
+      <p class="property-desc">On-chain auditability creates an immutable record of counterparty agreements, conditions, and outcomes.</p>
+    </div>
+    <div class="property-row">
+      <span class="property-num" aria-hidden="true">03</span>
+      <h3 class="property-name">Finality</h3>
+      <p class="property-desc">Atomic settlement eliminates the reconciliation overhead and counterparty exposure that fiat rails require.</p>
+    </div>
+  </div>
+</section>
 
-            if (e.key === 'Escape') {
-                e.preventDefault();
-                closeForm();
-            }
-        });
+<div class="section-break" aria-hidden="true">
+  <div class="section-break-line"></div>
+  <div class="section-break-mark"><span></span><span></span><span></span></div>
+  <div class="section-break-line"></div>
+</div>
 
-        document.addEventListener('focusin', (e) => {
-            const modal = document.getElementById('modal');
-            const modalContent = document.getElementById('modalContent');
-            const isOpen = modal && !modal.classList.contains('hidden');
-            if (!isOpen) return;
+<!-- SEGMENTS -->
+<section class="section" id="segments" aria-labelledby="segments-heading">
+  <p class="section-label">Built for</p>
+  <h2 class="segments-intro" id="segments-heading">Designed for the institutions navigating programmable money.</h2>
+  <div class="segments-list">
+    <div class="segment-item">
+      <div>
+        <p class="segment-type">Financial institutions</p>
+        <h3 class="segment-name">Banks</h3>
+      </div>
+      <p class="segment-desc">Verified, auditable counterparty agreements — before a single dollar moves. Trust infrastructure built for the obligations banks actually carry.</p>
+    </div>
+    <div class="segment-item">
+      <div>
+        <p class="segment-type">Payment companies</p>
+        <h3 class="segment-name">Fintechs</h3>
+      </div>
+      <p class="segment-desc">Payment terms enforced in code. Funds release automatically when conditions are met — no manual reconciliation, no disputed handoffs.</p>
+    </div>
+    <div class="segment-item">
+      <div>
+        <p class="segment-type">Digital commerce</p>
+        <h3 class="segment-name">Platforms &amp; Marketplaces</h3>
+      </div>
+      <p class="segment-desc">Multi-party payouts, escrow release, and dispute resolution — without the operational overhead that scales against you as volume grows.</p>
+    </div>
+  </div>
+</section>
 
-            if (modalContent && !modalContent.contains(e.target)) {
-                const closeBtn = document.getElementById('closeBtn');
-                if (closeBtn) closeBtn.focus();
-            }
-        });
+<!-- TEAM -->
+<section class="team-section" aria-label="About the team">
+  <div class="team-inner">
+    <p class="section-label">The team</p>
+    <p class="team-statement">Built by founders with deep operating experience across payments, crypto, fraud, and trust infrastructure — at companies that processed billions.</p>
+  </div>
+</section>
 
-        function onFormLoad() {
-            isFormLoaded = true;
-            const iframe = document.getElementById('tallyIframe');
-            const loader = document.getElementById('formLoader');
-            iframe.style.opacity = '1';
-            if (loader) {
-                loader.style.opacity = '0';
-                setTimeout(() => loader.style.display = 'none', 500);
-            }
-        }
+<!-- CTA -->
+<section class="cta-section" id="talk" aria-labelledby="cta-heading">
+  <div class="cta-left">
+    <h2 id="cta-heading">Let's <em>talk.</em></h2>
+    <p>If you're building on programmable payment rails — or thinking about where autonomous finance is heading — we'd like to hear from you.</p>
+  </div>
 
-        function openForm() {
-            const modal = document.getElementById('modal');
-            const modalContent = document.getElementById('modalContent');
-            const hero = document.getElementById('hero');
-            const footer = document.getElementById('footer');
-            const loader = document.getElementById('formLoader');
-            const iframe = document.getElementById('tallyIframe');
-            const closeBtn = document.getElementById('closeBtn');
+  <div>
+    <form id="contact-form" action="https://formspree.io/f/xzdoqyya" method="POST" aria-label="Contact form">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Name</label>
+          <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required />
+        </div>
+        <div class="form-group">
+          <label for="company">Company</label>
+          <input type="text" id="company" name="company" placeholder="Company name" autocomplete="organization" />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" required />
+      </div>
+      <div class="form-group">
+        <label for="role">I am a</label>
+        <select id="role" name="role">
+          <option value="" disabled selected>Select your context</option>
+          <option>Bank or financial institution</option>
+          <option>Fintech or payment company</option>
+          <option>Platform or marketplace</option>
+          <option>Investor</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="message">What's on your mind</label>
+        <textarea id="message" name="message" placeholder="Tell us what you're working on or exploring..."></textarea>
+      </div>
+      <button type="submit" class="form-submit">Send message</button>
+      <p class="form-note">We respond to every message.</p>
+    </form>
 
-            lastFocusedElement = document.activeElement;
-            modal.style.opacity = '0';
-            modal.classList.remove('hidden');
+    <div class="form-success" id="form-success" role="alert" aria-live="polite">
+      <div class="checkmark" aria-hidden="true">
+        <svg width="20" height="20" viewBox="0 0 22 22" fill="none">
+          <path d="M4 11l5 5 9-9" stroke="#1c2e42" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <h3>Message received.</h3>
+      <p>We'll be in touch shortly.</p>
+    </div>
+  </div>
+</section>
 
-            if (!isFormLoaded) {
-                loader.style.display = 'flex';
-                loader.style.opacity = '1';
-                iframe.style.opacity = '0';
+<footer>
+  <a href="#" class="footer-logo" aria-label="Duly home">
+    <img src="logo.png" alt="Duly" class="footer-logo-img" />
+  </a>
+  <p class="footer-copy">© 2026 Duly. All rights reserved.</p>
+</footer>
 
-                setTimeout(() => {
-                    if (!isFormLoaded) onFormLoad();
-                }, 6000);
-            } else {
-                loader.style.display = 'none';
-                iframe.style.opacity = '1';
-            }
+<script>
+  document.getElementById('contact-form').addEventListener('submit', async function(e) {
+    e.preventDefault();
+    const form = this;
+    const btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = 'Sending…';
+    const res = await fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    });
+    if (res.ok) {
+      form.style.display = 'none';
+      const success = document.getElementById('form-success');
+      success.style.display = 'block';
+      success.focus();
+    } else {
+      btn.disabled = false;
+      btn.textContent = 'Send message';
+      alert('Something went wrong — please try again or email us directly.');
+    }
+  });
+</script>
 
-            setTimeout(() => {
-                modal.style.opacity = '1';
-                modalContent.classList.remove('scale-95');
-                modalContent.classList.add('scale-100');
-                if (closeBtn) closeBtn.focus();
-            }, 10);
-
-            hero.style.transform = 'scale(0.97) translateY(-10px)';
-            hero.style.opacity = '0.2';
-            footer.style.opacity = '0';
-        }
-
-        function closeForm() {
-            const modal = document.getElementById('modal');
-            const modalContent = document.getElementById('modalContent');
-            const hero = document.getElementById('hero');
-            const footer = document.getElementById('footer');
-
-            modal.style.opacity = '0';
-            modalContent.classList.remove('scale-100');
-            modalContent.classList.add('scale-95');
-
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                hero.style.transform = 'scale(1) translateY(0)';
-                hero.style.opacity = '1';
-                footer.style.opacity = '1';
-
-                if (lastFocusedElement && typeof lastFocusedElement.focus === 'function') {
-                    lastFocusedElement.focus();
-                } else {
-                    const learnMoreBtn = document.getElementById('learnMoreBtn');
-                    if (learnMoreBtn) learnMoreBtn.focus();
-                }
-            }, 400);
-        }
-    </script>
 </body>
 </html>
