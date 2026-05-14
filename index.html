@@ -4,6 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Duly — The Trust Layer for Autonomous Finance</title>
+<link rel="icon" href="favicon.ico" sizes="any">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L2GEYJSPXL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L2GEYJSPXL');
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
@@ -21,6 +30,7 @@
   --border:       rgba(238,242,246,0.07);
   --border-2:     rgba(238,242,246,0.12);
   --border-input: rgba(238,242,246,0.30);
+  --brass:        #c9a96e;
   --accent:       #7dbcd8;   /* steel blue — lighter on same navy hue */
   --accent-light: rgba(125,188,216,0.1);
   --content-pad:  4rem;
@@ -49,12 +59,31 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 2rem;
   padding: 1.2rem var(--content-pad);
   background: rgba(21,36,55,0.92);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-bottom: 0.5px solid var(--border-2);
 }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--ink-2);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--ink); }
 
 .logo {
   display: flex;
@@ -108,19 +137,6 @@ nav {
   -webkit-mask-image: radial-gradient(ellipse 65% 80% at 82% 38%, rgba(0,0,0,0.9) 0%, transparent 68%);
 }
 
-/* Accent node anchoring the grid */
-.hero::after {
-  content: '';
-  position: absolute;
-  right: calc(18% - 5px);
-  top: calc(38% - 5px);
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
-  opacity: 0.8;
-  pointer-events: none;
-}
 
 .hero-inner {
   position: relative;
@@ -130,16 +146,6 @@ nav {
   padding: 0 var(--content-pad);
 }
 
-.hero-label {
-  font-size: 0.68rem;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--ink-3);
-  margin-bottom: 2rem;
-  opacity: 0;
-  animation: fadeUp 0.6s ease forwards;
-}
 
 .hero-headline {
   font-family: 'Instrument Serif', serif;
@@ -246,7 +252,7 @@ nav {
   font-weight: 500;
   letter-spacing: 0.15em;
   text-transform: uppercase;
-  color: var(--ink-3);
+  color: var(--brass);
   margin-bottom: 3.5rem;
 }
 
@@ -401,13 +407,72 @@ nav {
   padding: 5rem var(--content-pad);
 }
 
-.team-statement {
-  font-size: clamp(1rem, 1.4vw, 1.15rem);
+.team-thesis {
+  font-size: clamp(1rem, 1.3vw, 1.1rem);
   font-weight: 300;
   color: var(--ink-2);
   line-height: 1.8;
-  max-width: 600px;
+  max-width: 560px;
+  margin-bottom: 3.5rem;
 }
+
+.founders-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  max-width: 860px;
+}
+
+.founder {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.founder-photo {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--bg-3);
+  display: block;
+}
+
+.founder-name {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.25rem;
+  font-weight: 400;
+  color: var(--ink);
+  letter-spacing: -0.01em;
+  margin-bottom: 0.15rem;
+}
+
+.founder-title {
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--brass);
+  margin-bottom: 0.75rem;
+}
+
+.founder-bio {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--ink-2);
+  line-height: 1.75;
+  max-width: 34ch;
+  margin-bottom: 0.75rem;
+}
+
+.founder-linkedin {
+  display: inline-flex;
+  align-items: center;
+  color: var(--ink-3);
+  transition: color 0.2s;
+}
+
+.founder-linkedin:hover { color: var(--ink); }
 
 /* ─── CTA ───────────────────────────────────────────── */
 .cta-section {
@@ -506,9 +571,16 @@ nav {
 
 .form-note {
   margin-top: 0.75rem;
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   color: var(--ink-3);
   text-align: center;
+  line-height: 1.5;
+}
+
+.form-error {
+  margin-top: 0.75rem;
+  font-size: 0.8rem;
+  color: #e8a87c;
   line-height: 1.5;
 }
 
@@ -572,10 +644,41 @@ footer {
 }
 
 .footer-copy {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   color: var(--ink-3);
   letter-spacing: 0.02em;
 }
+
+.footer-email {
+  color: var(--ink-3);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.footer-email:hover { color: var(--ink-2); }
+
+.form-note-link {
+  color: var(--ink-2);
+  text-decoration: none;
+  border-bottom: 0.5px solid var(--border-2);
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.form-note-link:hover { color: var(--ink); border-color: var(--ink-2); }
+
+.form-group.has-error input,
+.form-group.has-error textarea {
+  border-color: rgba(232, 120, 80, 0.6);
+}
+
+.field-error {
+  font-size: 0.75rem;
+  color: #e8a87c;
+  margin-top: 0.3rem;
+  display: none;
+}
+
+.form-group.has-error .field-error { display: block; }
 
 /* ─── ANIMATION ─────────────────────────────────────── */
 @keyframes fadeUp {
@@ -585,7 +688,7 @@ footer {
 
 /* ─── REDUCED MOTION ────────────────────────────────── */
 @media (prefers-reduced-motion: reduce) {
-  .hero-label, .hero-headline, .hero-sub, .hero-actions {
+  .hero-headline, .hero-sub, .hero-actions {
     animation: none;
     opacity: 1;
   }
@@ -596,6 +699,7 @@ footer {
   :root { --content-pad: 1.5rem; }
 
   nav { padding: 1rem var(--content-pad); }
+  .nav-links { display: none; }
 
   .hero { padding: 7rem 0 5rem; }
 
@@ -618,6 +722,7 @@ footer {
   }
 
   .team-inner { padding: 3rem var(--content-pad); }
+  .founders-grid { grid-template-columns: 1fr; gap: 2.5rem; }
 
   .cta-section {
     grid-template-columns: 1fr;
@@ -642,15 +747,19 @@ footer {
   <a href="#" class="logo" aria-label="Duly home">
     <img src="logo.png" alt="Duly" class="logo-img" />
   </a>
+  <ul class="nav-links">
+    <li><a href="#solution">Solutions</a></li>
+    <li><a href="#segments">Built for</a></li>
+    <li><a href="#team">The team</a></li>
+  </ul>
   <a href="#talk" class="nav-cta">Let's talk</a>
 </nav>
 
 <!-- HERO -->
 <section class="hero" aria-labelledby="hero-heading">
   <div class="hero-inner">
-    <p class="hero-label">Trust infrastructure · Autonomous finance</p>
-    <h1 class="hero-headline" id="hero-heading">The trust layer for<br><em>autonomous finance.</em></h1>
-    <p class="hero-sub">Autonomous finance doesn't need faster versions of old processes. It needs new ones.</p>
+    <h1 class="hero-headline" id="hero-heading">The trust layer for<br><em>a new kind of money.</em></h1>
+    <p class="hero-sub">Not faster versions of old processes. New ones — built for money that actually behaves differently.</p>
     <div class="hero-actions">
       <a href="#talk" class="btn-primary">Let's talk</a>
     </div>
@@ -732,10 +841,34 @@ footer {
 </section>
 
 <!-- TEAM -->
-<section class="team-section" aria-label="About the team">
+<section class="team-section" id="team" aria-label="About the team">
   <div class="team-inner">
     <p class="section-label">The team</p>
-    <p class="team-statement">Built by founders with deep operating experience across payments, crypto, fraud, and trust infrastructure — at companies that processed billions.</p>
+    <p class="team-thesis">Few people have operated inside the risk, compliance, and trust systems that programmable money is meant to replace. These founders have.</p>
+    <div class="founders-grid">
+      <div class="founder">
+        <img src="matan.jpg" alt="Matan Naor" class="founder-photo" />
+        <div>
+          <h3 class="founder-name">Matan Naor</h3>
+          <p class="founder-title">CEO &amp; Co-founder</p>
+          <p class="founder-bio">GM of PayPal Israel and VP of Risk Management, leading global teams across data science, product, and operations. 15+ years building payments, risk, and decisioning infrastructure under real regulatory and growth constraints.</p>
+          <a href="https://www.linkedin.com/in/matannaor/" class="founder-linkedin" target="_blank" rel="noopener" aria-label="Matan Naor on LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="founder">
+        <img src="netanel.jpg" alt="Netanel Kabala" class="founder-photo" />
+        <div>
+          <h3 class="founder-name">Netanel Kabala</h3>
+          <p class="founder-title">CPO &amp; Co-founder</p>
+          <p class="founder-bio">Ex-PayPal. Co-founder and Chief Analytics Officer at Simplex — the first crypto on-ramp provider, acquired by Nuvei for ~$300M. Led AI and analytics at Nuvei post-acquisition.</p>
+          <a href="https://www.linkedin.com/in/netanel-kabala-a0871688" class="founder-linkedin" target="_blank" rel="noopener" aria-label="Netanel Kabala on LinkedIn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -751,7 +884,8 @@ footer {
       <div class="form-row">
         <div class="form-group">
           <label for="name">Name</label>
-          <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required />
+          <input type="text" id="name" name="name" placeholder="Your name" autocomplete="name" required aria-describedby="name-error" />
+          <span class="field-error" id="name-error">Please enter your name.</span>
         </div>
         <div class="form-group">
           <label for="company">Company</label>
@@ -760,7 +894,8 @@ footer {
       </div>
       <div class="form-group">
         <label for="email">Email</label>
-        <input type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" required />
+        <input type="email" id="email" name="email" placeholder="you@company.com" autocomplete="email" required aria-describedby="email-error" />
+        <span class="field-error" id="email-error">Please enter a valid email address.</span>
       </div>
       <div class="form-group">
         <label for="role">I am a</label>
@@ -778,7 +913,8 @@ footer {
         <textarea id="message" name="message" placeholder="Tell us what you're working on or exploring..."></textarea>
       </div>
       <button type="submit" class="form-submit">Send message</button>
-      <p class="form-note">We respond to every message.</p>
+      <p class="form-error" id="form-error" role="alert" aria-live="polite" style="display:none"></p>
+      <p class="form-note">We respond to every message. Prefer email? <a href="mailto:hello@dulyhq.com" class="form-note-link">hello@dulyhq.com</a></p>
     </form>
 
     <div class="form-success" id="form-success" role="alert" aria-live="polite">
@@ -797,10 +933,23 @@ footer {
   <a href="#" class="footer-logo" aria-label="Duly home">
     <img src="logo.png" alt="Duly" class="footer-logo-img" />
   </a>
-  <p class="footer-copy">© 2026 Duly. All rights reserved.</p>
+  <p class="footer-copy">© 2026 Duly. All rights reserved. · <a href="mailto:hello@dulyhq.com" class="footer-email">hello@dulyhq.com</a></p>
 </footer>
 
 <script>
+  function validateField(input) {
+    const group = input.closest('.form-group');
+    const isValid = input.validity.valid;
+    group.classList.toggle('has-error', !isValid);
+    input.setAttribute('aria-invalid', String(!isValid));
+  }
+
+  ['name', 'email'].forEach(id => {
+    const el = document.getElementById(id);
+    el.addEventListener('blur', () => validateField(el));
+    el.addEventListener('input', () => { if (el.closest('.form-group').classList.contains('has-error')) validateField(el); });
+  });
+
   document.getElementById('contact-form').addEventListener('submit', async function(e) {
     e.preventDefault();
     const form = this;
@@ -820,7 +969,9 @@ footer {
     } else {
       btn.disabled = false;
       btn.textContent = 'Send message';
-      alert('Something went wrong — please try again or email us directly.');
+      const err = document.getElementById('form-error');
+      err.textContent = 'Something went wrong — please try again or email us at hello@duly.com.';
+      err.style.display = 'block';
     }
   });
 </script>
