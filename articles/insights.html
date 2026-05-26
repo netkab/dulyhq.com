@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Insights — Duly</title>
+<meta name="description" content="Analysis and editorial on stablecoins, crypto regulation, and agentic payments from the Duly team." />
+<link rel="icon" href="../favicon.ico" sizes="any">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-L2GEYJSPXL"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-L2GEYJSPXL');
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --bg:           #1c2e42;
+  --bg-2:         #152437;
+  --bg-3:         #243649;
+  --ink:          #eef2f6;
+  --ink-2:        #8fb0c7;
+  --ink-3:        #5c7a92;
+  --border:       rgba(238,242,246,0.07);
+  --border-2:     rgba(238,242,246,0.12);
+  --brass:        #c9a96e;
+  --accent:       #7dbcd8;
+  --content-pad:  4rem;
+  --nav-h:        62px;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── NAV ──────────────────────────────────────────── */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  padding: 1.2rem var(--content-pad);
+  background: rgba(21,36,55,0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 0.5px solid var(--border-2);
+}
+
+.nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
+
+.nav-links a {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--ink-2);
+  text-decoration: none;
+  letter-spacing: 0.01em;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover { color: var(--ink); }
+.nav-links a[aria-current="page"] { color: var(--ink); }
+
+.logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-img { height: 30px; width: auto; display: block; mix-blend-mode: screen; }
+
+.nav-cta {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+  text-decoration: none;
+  border: 1px solid var(--border-2);
+  padding: 0.45rem 1.1rem;
+  border-radius: 5px;
+  transition: background 0.2s;
+}
+
+.nav-cta:hover { background: var(--border-2); }
+
+/* ─── MASTHEAD ──────────────────────────────────────── */
+.masthead {
+  margin-top: var(--nav-h);
+  padding: 5rem var(--content-pad) 3.5rem;
+  border-bottom: 0.5px solid var(--border-2);
+}
+
+.masthead-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.masthead-kicker {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.75rem;
+}
+
+.kicker-brand {
+  font-size: 0.62rem;
+  font-weight: 500;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.kicker-sep {
+  color: var(--ink-3);
+  font-size: 0.7rem;
+  line-height: 1;
+}
+
+.kicker-sub {
+  font-size: 0.62rem;
+  font-weight: 400;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+}
+
+.masthead-heading {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-size: clamp(4rem, 8vw, 7rem);
+  color: var(--ink);
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+  margin-bottom: 1.5rem;
+}
+
+.masthead-tagline {
+  font-size: 1rem;
+  font-weight: 300;
+  color: var(--ink-2);
+  line-height: 1.75;
+  max-width: 54ch;
+}
+
+/* ─── FILTER BAR ────────────────────────────────────── */
+.filter-bar {
+  position: sticky;
+  top: var(--nav-h);
+  z-index: 50;
+  background: rgba(28, 46, 66, 0.96);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 0.5px solid var(--border-2);
+}
+
+.filter-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 var(--content-pad);
+  display: flex;
+  align-items: center;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+.filter-inner::-webkit-scrollbar { display: none; }
+
+.filter-tab {
+  background: none;
+  border: none;
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--ink-3);
+  padding: 0.9rem 0;
+  margin-right: 2rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  transition: color 0.2s, border-color 0.2s;
+  flex-shrink: 0;
+}
+
+.filter-tab:hover { color: var(--ink-2); }
+
+.filter-tab.active {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+.tab-count {
+  font-size: 0.65rem;
+  font-weight: 400;
+  color: var(--ink-3);
+  background: var(--bg-3);
+  padding: 0.1rem 0.45rem;
+  border-radius: 20px;
+  line-height: 1.4;
+  transition: color 0.2s, background 0.2s;
+}
+
+.filter-tab.active .tab-count {
+  color: var(--accent);
+  background: rgba(125, 188, 216, 0.12);
+}
+
+/* ─── ARTICLE LIST ──────────────────────────────────── */
+main {
+  padding-bottom: 6rem;
+}
+
+.articles-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 var(--content-pad);
+}
+
+/* Hidden state for filtered-out articles */
+.article-row.hidden { display: none; }
+
+.article-row {
+  border-bottom: 0.5px solid var(--border-2);
+}
+
+.article-link {
+  display: block;
+  padding: 2.75rem 0;
+  text-decoration: none;
+  transition: opacity 0.18s;
+}
+
+.article-link:hover { opacity: 0.78; }
+
+/* Featured row — first article, larger treatment */
+.article-featured > .article-link {
+  padding: 3.25rem 0;
+}
+
+/* Article metadata row */
+.article-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.9rem;
+  flex-wrap: wrap;
+}
+
+.article-cat {
+  font-size: 0.6rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--brass);
+}
+
+.meta-sep {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--ink-3);
+  flex-shrink: 0;
+  opacity: 0.5;
+}
+
+.article-date,
+.article-read {
+  font-size: 0.7rem;
+  font-weight: 300;
+  color: var(--ink-3);
+  letter-spacing: 0.01em;
+}
+
+/* Article titles */
+.article-title {
+  font-family: 'Instrument Serif', serif;
+  color: var(--ink);
+  letter-spacing: -0.015em;
+  line-height: 1.15;
+  margin-bottom: 0.85rem;
+}
+
+.article-featured .article-title {
+  font-size: clamp(1.8rem, 3.2vw, 2.5rem);
+  margin-bottom: 1rem;
+}
+
+.article-row:not(.article-featured) .article-title {
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+}
+
+.article-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+/* Excerpt */
+.article-excerpt {
+  font-size: 0.92rem;
+  font-weight: 300;
+  color: var(--ink-2);
+  line-height: 1.85;
+  max-width: 68ch;
+  margin-bottom: 1.25rem;
+}
+
+.article-featured .article-excerpt {
+  font-size: 1rem;
+  line-height: 1.8;
+}
+
+/* Read CTA */
+.article-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--accent);
+  letter-spacing: 0.02em;
+}
+
+/* ─── FOOTER ────────────────────────────────────────── */
+footer {
+  padding: 2rem var(--content-pad);
+  border-top: 0.5px solid var(--border);
+  background: var(--bg-2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-logo { display: flex; align-items: center; gap: 8px; text-decoration: none; }
+.footer-logo-img { height: 22px; width: auto; display: block; mix-blend-mode: screen; }
+.footer-copy { font-size: 0.75rem; color: var(--ink-3); letter-spacing: 0.02em; }
+.footer-email { color: var(--ink-3); text-decoration: none; transition: color 0.2s; }
+.footer-email:hover { color: var(--ink-2); }
+
+/* ─── RESPONSIVE ─────────────────────────────────────── */
+@media (max-width: 900px) {
+  :root { --content-pad: 1.5rem; }
+  nav { padding: 1rem var(--content-pad); }
+  .nav-links { display: none; }
+
+  .masthead {
+    padding: 3.5rem var(--content-pad) 2.5rem;
+  }
+
+  .masthead-heading {
+    font-size: clamp(3rem, 14vw, 4.5rem);
+  }
+
+  .filter-tab {
+    margin-right: 1.25rem;
+  }
+
+  .article-link {
+    padding: 2.25rem 0;
+  }
+
+  .article-featured > .article-link {
+    padding: 2.5rem 0;
+  }
+
+  footer {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+    padding: 1.5rem;
+  }
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="../" class="logo" aria-label="Duly home">
+    <img src="../logo.png" alt="Duly" class="logo-img" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="../#solution">Solutions</a></li>
+    <li><a href="../#segments">Built for</a></li>
+    <li><a href="../#team">The team</a></li>
+    <li><a href="./insights.html" aria-current="page">Insights</a></li>
+  </ul>
+  <a href="../#talk" class="nav-cta">Let's talk</a>
+</nav>
+
+<!-- MASTHEAD: large editorial display heading -->
+<div class="masthead">
+  <div class="masthead-inner">
+    <h1 class="masthead-heading">Insights</h1>
+    <p class="masthead-tagline">Analysis and editorial on stablecoins, agentic payments, and the future of programmable money.</p>
+  </div>
+</div>
+
+<!-- FILTER BAR: sticky, scrollable tabs with counts -->
+<div class="filter-bar" role="tablist" aria-label="Filter articles by topic">
+  <div class="filter-inner">
+    <button class="filter-tab active"
+            role="tab"
+            aria-selected="true"
+            data-filter="all"
+            onclick="filterArticles('all')">
+      All <span class="tab-count">3</span>
+    </button>
+    <button class="filter-tab"
+            role="tab"
+            aria-selected="false"
+            data-filter="stablecoins"
+            onclick="filterArticles('stablecoins')">
+      Stablecoins <span class="tab-count">1</span>
+    </button>
+    <button class="filter-tab"
+            role="tab"
+            aria-selected="false"
+            data-filter="agentic-payments"
+            onclick="filterArticles('agentic-payments')">
+      Agentic Payments <span class="tab-count">1</span>
+    </button>
+    <button class="filter-tab"
+            role="tab"
+            aria-selected="false"
+            data-filter="crypto-regulation"
+            onclick="filterArticles('crypto-regulation')">
+      Crypto Regulation <span class="tab-count">1</span>
+    </button>
+  </div>
+</div>
+
+<main>
+  <div class="articles-inner">
+
+    <!-- Article 1: Featured (stablecoins) -->
+    <article class="article-row article-featured" data-category="stablecoins">
+      <a href="./stablecoins-local-payments.html" class="article-link" aria-label="Read: Stablecoins Weren't Supposed to Be a Local Payments Story">
+        <div class="article-meta">
+          <span class="article-cat">Stablecoins</span>
+          <span class="meta-sep" aria-hidden="true"></span>
+          <span class="article-date">May 26, 2026</span>
+          <span class="meta-sep" aria-hidden="true"></span>
+          <span class="article-read">5 min read</span>
+        </div>
+        <h2 class="article-title">Stablecoins Weren't Supposed to Be a Local Payments Story.<br><em>Then the Data Arrived.</em></h2>
+        <p class="article-excerpt">In February 2026, stablecoins settled $7.2 trillion in transactions — surpassing ACH for the first time in history. The headline was striking. The detail underneath it was more interesting: most of that volume wasn't crossing borders. Cross-border's share of stablecoin payment volume has fallen from roughly 50% to 25%. Here's what that shift means for infrastructure.</p>
+        <span class="article-cta" aria-hidden="true">Read article →</span>
+      </a>
+    </article>
+
+    <!-- Article 2: Agentic Payments -->
+    <article class="article-row" data-category="agentic-payments">
+      <a href="./ai-agents-authorization.html" class="article-link" aria-label="Read: When AI Agents Spend Money, Who's Responsible?">
+        <div class="article-meta">
+          <span class="article-cat">Agentic Payments</span>
+          <span class="meta-sep" aria-hidden="true"></span>
+          <span class="article-date">May 9, 2026</span>
+          <span class="meta-sep" aria-hidden="true"></span>
+          <span class="article-read">5 min read</span>
+        </div>
+        <h2 class="article-title">When AI Agents Spend Money, <em>Who's Responsible?</em></h2>
+        <p class="article-excerpt">A payments researcher gave AI agents real enterprise procurement tasks. In one experiment, an agent flagged that a transaction likely exceeded its authorization scope — then completed it anyway. The failure wasn't the model. It was the infrastructure.</p>
+        <span class="article-cta" aria-hidden="true">Read article →</span>
+      </a>
+    </article>
+
+    <!-- Article 3: Crypto Regulation -->
+    <article class="article-row" data-category="crypto-regulation">
+      <a href="./clarity-act.html" class="article-link" aria-label="Read: The CLARITY Act Just Cleared Committee">
+        <div class="article-meta">
+          <span class="article-cat">Crypto Regulation</span>
+          <span class="meta-sep" aria-hidden="true"></span>
+          <span class="article-date">May 15, 2026</span>
+          <span class="meta-sep" aria-hidden="true"></span>
+          <span class="article-read">5 min read</span>
+        </div>
+        <h2 class="article-title">The CLARITY Act Just Cleared Committee.<br><em>The Real Test Is What Comes After.</em></h2>
+        <p class="article-excerpt">On May 14, the Senate Banking Committee voted 15–9 to advance the CLARITY Act. The freeze safe harbor is the right idea. The yield debate is a sideshow. And building compliance native to programmable money is the work that starts the day it passes.</p>
+        <span class="article-cta" aria-hidden="true">Read article →</span>
+      </a>
+    </article>
+
+  </div>
+</main>
+
+<footer>
+  <a href="../" class="footer-logo" aria-label="Duly home">
+    <img src="../logo.png" alt="Duly" class="footer-logo-img" />
+  </a>
+  <p class="footer-copy">© 2026 Duly. All rights reserved. · <a href="mailto:hello@dulyhq.com" class="footer-email">hello@dulyhq.com</a></p>
+</footer>
+
+<script>
+function filterArticles(category) {
+  // Show/hide article rows
+  document.querySelectorAll('.article-row').forEach(function(row) {
+    if (category === 'all' || row.dataset.category === category) {
+      row.classList.remove('hidden');
+    } else {
+      row.classList.add('hidden');
+    }
+  });
+
+  // Update tab active states
+  document.querySelectorAll('.filter-tab').forEach(function(tab) {
+    var isActive = tab.dataset.filter === category;
+    tab.classList.toggle('active', isActive);
+    tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+  });
+}
+</script>
+
+</body>
+</html>
